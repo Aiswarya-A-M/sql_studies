@@ -2,7 +2,7 @@ const mysql = require("mysql2");
 const express = require("express");
 const uuid = require("uuid");
 const dotEnv = require("dotenv");
-;
+
 dotEnv.config();
 const app = express();
 app.use(express.json());
@@ -38,10 +38,10 @@ app.post("/emp", (req, res) => {
       }
     });
     const sql = `INSERT INTO empDetails (empId, empName,empEmail) VALUES ("${empId}","${empName}","${empMail}")`;
-    connection.query(sql, function (err, result) {
+    connection.query(sql, function (error, result) {
       "";
-      if (err) {
-        return console.log(err);
+      if (error) {
+        return console.log(error);
       }
       res.end("added to employee details table");
     });
@@ -67,11 +67,96 @@ app.post("/customer", (req, res) => {
       }
     });
     const sql = `INSERT INTO customerDetails (id, customerName,customerEmail,customerPhoneNumber) VALUES ("${customerId}","${customerName}","${customerMail}","${customerNumber}")`;
+    connection.query(sql, (error, result) => {
+      if (error) {
+        return console.log(error);
+      }
+      res.end("added to customer details table");
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+app.get("/innerjoin", (req, res) => {
+  try {
+    const sql = `SELECT empDetails.empName,customerDetails.customerName,customerDetails.customerPhoneNumber FROM empDetails INNER JOIN customerDetails ON empDetails.empEmail=customerDetails.customerEmail`;
     connection.query(sql, (err, result) => {
       if (err) {
         return console.log(err);
       }
-      res.end("added to customer details table");
+      res.json(result);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+app.get("/rightjoin", (req, res) => {
+  try {
+    const sql = `SELECT empDetails.empName,customerDetails.customerEmail,customerDetails.customerName,customerDetails.customerPhoneNumber FROM empDetails RIGHT JOIN customerDetails ON empDetails.empEmail=customerDetails.customerEmail`;
+    connection.query(sql, (err, result) => {
+      if (err) {
+        return console.log(err);
+      }
+      res.json(result);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+app.get("/leftjoin", (req, res) => {
+  try {
+    connection.query(sql, (err, result) => {
+      if (err) {
+        return console.log(err);
+      }
+      res.json(result);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+app.get("/crossjoin", (req, res) => {
+  try {
+    const sql = `SELECT  * FROM empDetails CROSS JOIN customerDetails`;
+
+    connection.query(sql, (err, result) => {
+      if (err) {
+        return console.log(err);
+      }
+      res.json(result);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+app.get("/selfjoin", (req, res) => {
+  try {
+    const sql = `SELECT studentTable.studentName,studentTable.studentId FROM studentTable,teacherDetails WHERE studentTable.deptNo=teacherDetails.deptNo`;
+    connection.query(sql, (err, result) => {
+      if (err) {
+        return console.log(err);
+      }
+      res.json(result);
+    });
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+app.get("/naturaljoin", (req, res) => {
+  try {
+    const sql = `SELECT  * FROM studentTable NATURAL JOIN teacherDetails`;
+
+    connection.query(sql, (err, result) => {
+      if (err) {
+        return console.log(err);
+      }
+      res.json(result);
     });
   } catch (error) {
     console.log(error);
