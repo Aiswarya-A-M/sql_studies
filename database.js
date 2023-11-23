@@ -22,10 +22,6 @@ connection.connect((error) => {
   }
 });
 
-app.get("/", (req, res) => {
-  res.send("hi");
-});
-
 app.post("/emp", (req, res) => {
   try {
     const empName = req.body.name;
@@ -39,7 +35,6 @@ app.post("/emp", (req, res) => {
     });
     const sql = `INSERT INTO empDetails (empId, empName,empEmail) VALUES ("${empId}","${empName}","${empMail}")`;
     connection.query(sql, function (error, result) {
-      "";
       if (error) {
         return console.log(error);
       }
@@ -121,8 +116,7 @@ app.get("/leftjoin", (req, res) => {
 
 app.get("/crossjoin", (req, res) => {
   try {
-    const sql = `SELECT  * FROM empDetails CROSS JOIN customerDetails`;
-
+    const sql = `SELECT * FROM empDetails CROSS JOIN customerDetails`;
     connection.query(sql, (err, result) => {
       if (err) {
         return console.log(err);
@@ -150,8 +144,7 @@ app.get("/selfjoin", (req, res) => {
 
 app.get("/naturaljoin", (req, res) => {
   try {
-    const sql = `SELECT  * FROM studentTable NATURAL JOIN teacherDetails`;
-
+    const sql = `SELECT * FROM studentTable NATURAL JOIN teacherDetails`;
     connection.query(sql, (err, result) => {
       if (err) {
         return console.log(err);

@@ -47,7 +47,7 @@ app.post("/teacher", (req, res) => {
     const teacherName = req.body.name;
     const teacherSalary = req.body.salary;
     const teacherNo = req.body.no;
-    const sql = `INSERT INTO teacherDetails ( teacherName,teacherSalary,deptNO) VALUES ("${teacherName}","${teacherSalary}","${teacherNo}")`;
+    const sql = `INSERT INTO teacherDetails (teacherName,teacherSalary,deptNO) VALUES ("${teacherName}","${teacherSalary}","${teacherNo}")`;
     connection.query(sql, (error, result) => {
       if (error) {
         return console.log(error);
@@ -131,7 +131,7 @@ app.get("/min", (req, res) => {
 
 app.get("/last", (req, res) => {
   try {
-    const sql = `SELECT studentlocation FROM studentTable ORDER BY studentId DESC LIMIT 1`;
+    const sql = `SELECT studentLocation FROM studentTable ORDER BY studentId DESC LIMIT 1`;
     connection.query(sql, (error, result) => {
       if (error) {
         return console.log(error);
@@ -159,22 +159,7 @@ app.get("/first", (req, res) => {
 
 app.get("/concat", (req, res) => {
   try {
-    const sql = `SELECT studentlocation, group_concat(studentName) as "name" FROM studentTable group by studentlocation;`;
-    connection.query(sql, (error, result) => {
-      if (error) {
-        return console.log(error);
-      }
-      res.send(result);
-    });
-  } catch (error) {
-    console.log(error);
-  }
-});
-
-app.get("/dlt", (req, res) => {
-  try {
-    const sql = `DELETE FROM studentTable
-      WHERE studentName='Dalin'`;
+    const sql = `SELECT studentLocation, group_concat(studentName) as "name" FROM studentTable group by studentLocation;`;
     connection.query(sql, (error, result) => {
       if (error) {
         return console.log(error);
