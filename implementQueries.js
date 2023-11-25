@@ -145,7 +145,7 @@ app.get("/last", (req, res) => {
 
 app.get("/first", (req, res) => {
   try {
-    const sql = `SELECT * FROM teacherDetails LIMIT 2`;
+    const sql = `SELECT * FROM teacherDetails LIMIT 1`;
     connection.query(sql, (error, result) => {
       if (error) {
         return console.log(error);

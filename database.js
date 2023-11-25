@@ -103,6 +103,7 @@ app.get("/rightjoin", (req, res) => {
 
 app.get("/leftjoin", (req, res) => {
   try {
+    const sql = `SELECT empDetails.empName,customerDetails.customerEmail,customerDetails.customerName,customerDetails.customerPhoneNumber FROM empDetails LEFT JOIN customerDetails ON empDetails.empEmail=customerDetails.customerEmail`;
     connection.query(sql, (err, result) => {
       if (err) {
         return console.log(err);
