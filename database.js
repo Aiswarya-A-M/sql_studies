@@ -73,7 +73,7 @@ app.post("/customer", (req, res) => {
   }
 });
 
-app.get("/innerjoin", (req, res) => {
+app.get("/innerJoin", (req, res) => {
   try {
     const sql = `SELECT empDetails.empName,customerDetails.customerName,customerDetails.customerPhoneNumber FROM empDetails INNER JOIN customerDetails ON empDetails.empEmail=customerDetails.customerEmail`;
     connection.query(sql, (err, result) => {
@@ -87,7 +87,7 @@ app.get("/innerjoin", (req, res) => {
   }
 });
 
-app.get("/rightjoin", (req, res) => {
+app.get("/rightJoin", (req, res) => {
   try {
     const sql = `SELECT empDetails.empName,customerDetails.customerEmail,customerDetails.customerName,customerDetails.customerPhoneNumber FROM empDetails RIGHT JOIN customerDetails ON empDetails.empEmail=customerDetails.customerEmail`;
     connection.query(sql, (err, result) => {
@@ -101,7 +101,7 @@ app.get("/rightjoin", (req, res) => {
   }
 });
 
-app.get("/leftjoin", (req, res) => {
+app.get("/leftJoin", (req, res) => {
   try {
     const sql = `SELECT empDetails.empName,customerDetails.customerEmail,customerDetails.customerName,customerDetails.customerPhoneNumber FROM empDetails LEFT JOIN customerDetails ON empDetails.empEmail=customerDetails.customerEmail`;
     connection.query(sql, (err, result) => {
@@ -115,7 +115,7 @@ app.get("/leftjoin", (req, res) => {
   }
 });
 
-app.get("/crossjoin", (req, res) => {
+app.get("/crossJoin", (req, res) => {
   try {
     const sql = `SELECT * FROM empDetails CROSS JOIN customerDetails`;
     connection.query(sql, (err, result) => {
@@ -129,7 +129,7 @@ app.get("/crossjoin", (req, res) => {
   }
 });
 
-app.get("/selfjoin", (req, res) => {
+app.get("/selfJoin", (req, res) => {
   try {
     const sql = `SELECT studentTable.studentName,studentTable.studentId FROM studentTable,teacherDetails WHERE studentTable.deptNo=teacherDetails.deptNo`;
     connection.query(sql, (err, result) => {
@@ -143,7 +143,7 @@ app.get("/selfjoin", (req, res) => {
   }
 });
 
-app.get("/naturaljoin", (req, res) => {
+app.get("/naturalJoin", (req, res) => {
   try {
     const sql = `SELECT * FROM studentTable NATURAL JOIN teacherDetails`;
     connection.query(sql, (err, result) => {
