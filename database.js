@@ -34,7 +34,7 @@ app.post("/emp", (req, res) => {
       }
 
       const sql = `INSERT INTO empDetails (empId, empName,empEmail) VALUES ("${empId}","${empName}","${empMail}")`;
-      connection.query(sql, function (error, result) {
+      connection.query(sql,  (error, result) => {
         if (error) {
           return console.log(error);
         }
