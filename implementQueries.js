@@ -21,10 +21,6 @@ connection.connect((error) => {
   }
 });
 
-app.get("/", (req, res) => {
-  res.send("hi");
-});
-
 app.post("/student", (req, res) => {
   try {
     const studentName = req.body.name;

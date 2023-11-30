@@ -32,13 +32,14 @@ app.post("/emp", (req, res) => {
       if (result.length !== 0) {
         return res.end("given mail id is already used");
       }
-    });
-    const sql = `INSERT INTO empDetails (empId, empName,empEmail) VALUES ("${empId}","${empName}","${empMail}")`;
-    connection.query(sql, function (error, result) {
-      if (error) {
-        return console.log(error);
-      }
-      res.end("added to employee details table");
+
+      const sql = `INSERT INTO empDetails (empId, empName,empEmail) VALUES ("${empId}","${empName}","${empMail}")`;
+      connection.query(sql, function (error, result) {
+        if (error) {
+          return console.log(error);
+        }
+        res.end("added to employee details table");
+      });
     });
   } catch (error) {
     console.log(error);
@@ -60,13 +61,13 @@ app.post("/customer", (req, res) => {
       if (result.length !== 0) {
         return res.end("given mail id is already used");
       }
-    });
-    const sql = `INSERT INTO customerDetails (id, customerName,customerEmail,customerPhoneNumber) VALUES ("${customerId}","${customerName}","${customerMail}","${customerNumber}")`;
-    connection.query(sql, (error, result) => {
-      if (error) {
-        return console.log(error);
-      }
-      res.end("added to customer details table");
+      const sql = `INSERT INTO customerDetails (id, customerName,customerEmail,customerPhoneNumber) VALUES ("${customerId}","${customerName}","${customerMail}","${customerNumber}")`;
+      connection.query(sql, (error, result) => {
+        if (error) {
+          return console.log(error);
+        }
+        res.end("added to customer details table");
+      });
     });
   } catch (error) {
     console.log(error);
